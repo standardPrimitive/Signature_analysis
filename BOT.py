@@ -1,12 +1,6 @@
 import telebot
 from telebot.types import InputMediaPhoto
 from telebot.types import InlineKeyboardMarkup, InlineKeyboardButton
-#from telebot.types import ReplyKeyboardMarkup, KeyboardButton
-# import json
-# from PIL import Image
-# import sqlite3
-# import requests
-# import base64
 import os
 from model import extract_signatures_from_documents
 from model import text_output_signatures
@@ -23,11 +17,6 @@ def start(message):
                InlineKeyboardButton("Идентифицировать подпись пользователя", callback_data='identify_signature'))
     bot.reply_to(message, "Выберите действие:", reply_markup=markup)
     
-    #Создание клавиатуры с кнопками
-    # keyboard = ReplyKeyboardMarkup(resize_keyboard=True, one_time_keyboard=True)
-    # keyboard.add(KeyboardButton('Загрузить подписи пользователя в базу данных'))
-    # keyboard.add(KeyboardButton('Идентифицировать подпись пользователя'))
-    # bot.send_message(message.chat.id, "Выберите действие:", reply_markup=keyboard)
 
 @bot.callback_query_handler(func=lambda call: True)
 def query_handler(call):
@@ -74,11 +63,6 @@ def handle_photo(message):
     except Exception as e:
         bot.reply_to(message, "Ошибка при выводе изображения сравнения подписей")
     
-
-
-
-
-
 docs_path = 'Docs'
 predict_path = 'Predicts/Signs'
 employee_signs_path = 'Signatures/' 
